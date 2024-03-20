@@ -58,13 +58,7 @@ if (isset($_POST['remove_from_cart'])) {
     }
 }
 
-// Calculate total price
-$total_price = 0;
-if (!empty($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $id_produs => $product) {
-        $total_price += $product['pret'];
-    }
-}
+ 
 ?>
 
 <!DOCTYPE html>
