@@ -1,0 +1,26 @@
+<?php
+	$host="localhost";
+	$user="root";
+	$pas="";
+	$dbname="ceef_pap2013";
+	try
+	{
+		$conn=new mysqli($host,$user,$pas,$dbname);
+		echo "Conexiunea este reușită<br>";
+		$sql="SELECT Nume, Prenume, DenGrupa FROM Elevi INNER JOIN Grupe ON Elevi.idGrupa=Grupe.idGrupa";
+		$result=$conn->query($sql);
+		echo "<table border='1'>";
+		while($row=$result->fetch_array(MYSQLI_NUM))
+		{
+			echo "<tr><td>".$row[0]."</td><td>".$row[1]."</td><td>".$row[2]."</td></tr>";
+
+		}
+		echo "</table>";
+		$conn->close();
+	}
+	catch(Exception $error)
+	{
+		echo $error->getMessage();
+	}
+	
+?>

@@ -1,0 +1,21 @@
+<?php
+	$host="localhost";
+	$user="root";
+	$pas="";
+	$dbname="ceef_pap2013";
+	try
+	{
+		$conn=new mysqli($host,$user,$pas,$dbname);
+		echo "Conexiunea este reușită<br>";
+		$dn=strtotime($_POST['dn']);
+		$sql="INSERT INTO Elevi(Nume, Prenume, Data_nas, idGrupa) VALUES('".$_POST['nume']."','".$_POST['prenume']."','".date("Y-m-d",$dn)."',".$_POST['idgr'].")";
+		$conn->query($sql);
+		echo "Elevul a fost inserat cu succes<br>";
+		$conn->close();
+	}
+	catch(Exception $error)
+	{
+		echo $error->getMessage();
+	}
+	
+?>

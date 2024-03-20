@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inserarea elevilor</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form method="post" action="bd_conex.php">
+		<table>
+			<tr>
+				<td>Nume</td>
+				<td><input type="text" name="nume"></td>
+			</tr>
+			<tr>
+				<td>Prenume</td>
+				<td><input type="text" name="prenume"></td>
+			</tr>
+			<tr>
+				<td>Data nașterii</td>
+				<td><input type="date" name="dn" value="Y-m-d"></td>
+			</tr>
+			<tr>
+				<td>Grupa</td>
+				<td>
+					<select name="idgr">
+						<option value="0" disabled="disabled" selected>Selectati grupa</option>
+						<?php
+							$host="localhost";
+							$user="root";
+							$pas="";
+							$dbname="Cafenea";
+							$conn= new mysqli($host,$user,$pas,$dbname);
+							$sql="SELECT idGrupa,DenGrupa FROM grupe";
+							$result=$conn->query($sql);
+							while($row=$result->fetch_array(MYSQLI_NUM))
+							{
+								echo "<option value='".$row[0]."'>".$row[1]."</option>";
+							}
+							$conn->close();
+						?>
+						
+					</select>
+				</td>
+			</tr>
+			<tr>
+				
+				<td colspan="2"><input type="submit" value="Inserare"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
